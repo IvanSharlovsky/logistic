@@ -14,8 +14,18 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define LOGISTIC_Warehouse_generated_h
 
 #define logistic_Source_logistic_Warehouse_h_12_SPARSE_DATA
-#define logistic_Source_logistic_Warehouse_h_12_RPC_WRAPPERS
-#define logistic_Source_logistic_Warehouse_h_12_RPC_WRAPPERS_NO_PURE_DECLS
+#define logistic_Source_logistic_Warehouse_h_12_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execRemoveResource); \
+	DECLARE_FUNCTION(execAddResource);
+
+
+#define logistic_Source_logistic_Warehouse_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execRemoveResource); \
+	DECLARE_FUNCTION(execAddResource);
+
+
 #define logistic_Source_logistic_Warehouse_h_12_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAWarehouse(); \

@@ -23,14 +23,25 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Warehouse")
-	int32 ResourceType;
+    // Тип ресурса, который хранит склад (от 0 до 49 для 50 типов ресурсов)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Warehouse")
+    int32 ResourceType;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Warehouse")
-	int32 ResourceAmount;
+    // Количество ресурса на складе
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Warehouse")
+    int32 ResourceAmount;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Warehouse")
-	int32 StorageLimit;
+    // Максимальная вместимость ресурса на складе
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Warehouse")
+    int32 StorageLimit;
+
+    // Метод для добавления ресурса
+    UFUNCTION(BlueprintCallable, Category = "Warehouse")
+    bool AddResource(int32 Amount);
+
+    // Метод для извлечения ресурса
+    UFUNCTION(BlueprintCallable, Category = "Warehouse")
+    bool RemoveResource(int32 Amount);
 
 private:
 	// Компонент для отображения меша склада
