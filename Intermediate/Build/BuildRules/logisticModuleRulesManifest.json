@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"D:\\Documents\\Unreal Projects\\logistic\\Source\\logistic\\logistic.Build.cs",
+		"D:\\Documents\\Unreal Projects\\logistic\\Source\\logistic.Target.cs",
+		"D:\\Documents\\Unreal Projects\\logistic\\Source\\logisticEditor.Target.cs"
+	],
+	"EngineVersion": "4.27.2"
+}

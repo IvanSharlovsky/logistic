@@ -1,0 +1,2 @@
+D:\Documents\Unreal Projects\logistic\Intermediate\Build\Win64\UE4Editor\Development\logistic\Definitions.logistic.h
+D:\Documents\Unreal Projects\logistic\Source\logistic\logistic.h

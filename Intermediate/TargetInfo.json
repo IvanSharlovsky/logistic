@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "logistic",
+			"Path": "D:\\Documents\\Unreal Projects\\logistic\\Source\\logistic.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "logisticEditor",
+			"Path": "D:\\Documents\\Unreal Projects\\logistic\\Source\\logisticEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

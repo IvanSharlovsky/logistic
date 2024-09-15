@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\logistic.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{CB7F33E5-A51B-4555-AA1F-3C68D1957465}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\logistic.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\logisticEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\.editorconfig" />
+    <Filter Include="Config">
+      <UniqueIdentifier>{CBFA3FCE-2572-424B-9F86-845F46E9F5B8}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\logistic">
+      <UniqueIdentifier>{FD7B387F-DF81-4EA6-81C8-761239E304CB}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\logistic\logistic.Build.cs">
+      <Filter>Source\logistic</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\logistic\logistic.cpp">
+      <Filter>Source\logistic</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\logistic\logistic.h">
+      <Filter>Source\logistic</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\logistic\logisticGameModeBase.cpp">
+      <Filter>Source\logistic</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\logistic\logisticGameModeBase.h">
+      <Filter>Source\logistic</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\logistic\Warehouse.cpp">
+      <Filter>Source\logistic</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\logistic\Warehouse.h">
+      <Filter>Source\logistic</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
