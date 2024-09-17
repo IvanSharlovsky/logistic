@@ -12,7 +12,7 @@ class LOGISTIC_API AWarehouse : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Sets default values for this actor's properties
+    // Конструктор по умолчанию
 	AWarehouse();
 
 protected:

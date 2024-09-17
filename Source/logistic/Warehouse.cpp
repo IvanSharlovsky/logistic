@@ -60,7 +60,9 @@ bool AWarehouse::RemoveResource(int32 Amount)
 	if (ResourceAmount >= Amount)
 	{
 		ResourceAmount -= Amount;
+		UE_LOG(LogTemp, Warning, TEXT("Resource removed, new amount: %d"), ResourceAmount); // Логирование для проверки
 		return true;  // Успешно извлечено
 	}
+	UE_LOG(LogTemp, Warning, TEXT("Not enough resource to remove")); // Логирование недостатка ресурса
 	return false;  // Недостаточно ресурса
 }
