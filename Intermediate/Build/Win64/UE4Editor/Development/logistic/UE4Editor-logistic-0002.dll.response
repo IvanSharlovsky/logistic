@@ -71,7 +71,7 @@
 "setupapi.lib"
 "dwmapi.lib"
 "imm32.lib"
-/OUT:"D:\Documents\Unreal Projects\logistic\Binaries\Win64\UE4Editor-logistic-1951.dll"
-/IMPLIB:"D:\Documents\Unreal Projects\logistic\Intermediate\Build\Win64\UE4Editor\Development\logistic\UE4Editor-logistic-1951.suppressed.lib"
-/PDB:"D:\Documents\Unreal Projects\logistic\Binaries\Win64\UE4Editor-logistic-1951.pdb"
+/OUT:"D:\Documents\Unreal Projects\logistic\Binaries\Win64\UE4Editor-logistic-0002.dll"
+/IMPLIB:"D:\Documents\Unreal Projects\logistic\Intermediate\Build\Win64\UE4Editor\Development\logistic\UE4Editor-logistic-0002.suppressed.lib"
+/PDB:"D:\Documents\Unreal Projects\logistic\Binaries\Win64\UE4Editor-logistic-0002.pdb"
 /ignore:4078

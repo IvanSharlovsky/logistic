@@ -8,7 +8,14 @@ public class logistic : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+		PublicDependencyModuleNames.AddRange(new string[] { 
+			"Core", 
+			"CoreUObject", 
+			"Engine", 
+			"InputCore",
+            "AIModule",        // Добавляем модуль AI
+            "NavigationSystem" // Добавляем модуль навигации
+		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 
