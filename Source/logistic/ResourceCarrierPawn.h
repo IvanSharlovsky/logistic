@@ -6,30 +6,41 @@
 #include "GameFramework/Pawn.h"
 #include "ResourceCarrierPawn.generated.h"
 
+class AWarehouse;
+
 UCLASS()
 class LOGISTIC_API AResourceCarrierPawn : public APawn
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
-	// Конструктор по умолчанию
-	AResourceCarrierPawn();
+    // Конструктор
+    AResourceCarrierPawn();
+
+    // Переопределение BeginPlay
+    virtual void BeginPlay() override;
+
+    // Переопределение Tick для обновления каждый кадр
+    virtual void Tick(float DeltaTime) override;
+
+    // Функция для задания склада, к которому нужно двигаться
+    void SetTargetWarehouse(AWarehouse* Target);
+
+    // Скорость перемещения
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+    float MovementSpeed;
 
 protected:
     // Компонент для визуализации Pawn
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
     UStaticMeshComponent* StaticMesh;
 
-    // Контроллер для передвижения по NavMesh
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement")
-    class UNavigationSystemV1* NavSystem;
+    // Склад, к которому движется грузчик
+    AWarehouse* TargetWarehouse;
 
-    // Функции для управления началом игры и каждым кадром
-    virtual void BeginPlay() override;
-    virtual void Tick(float DeltaTime) override;
+    // Флаг, обозначающий, нужно ли двигаться
+    bool bIsMoving;
 
-public:
-    // Функция для перемещения к складу
-    UFUNCTION(BlueprintCallable, Category = "Movement")
-    void MoveToWarehouse(AActor* TargetWarehouse);
+    // Функция перемещения к складу
+    void MoveToWarehouse(float DeltaTime);
 };

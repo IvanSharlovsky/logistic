@@ -142,6 +142,10 @@ void EmptyLinkFunctionForGeneratedCodeWarehouse() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_StaticMesh_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_StaticMesh;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ResourceType_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FIntPropertyParams NewProp_ResourceType;
@@ -153,10 +157,6 @@ void EmptyLinkFunctionForGeneratedCodeWarehouse() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_StorageLimit_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FIntPropertyParams NewProp_StorageLimit;
-#if WITH_METADATA
-		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_StaticMesh_MetaData[];
-#endif
-		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_StaticMesh;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -175,6 +175,16 @@ void EmptyLinkFunctionForGeneratedCodeWarehouse() {}
 		{ "ModuleRelativePath", "Warehouse.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWarehouse_Statics::NewProp_StaticMesh_MetaData[] = {
+		{ "AllowPrivateAccess", "true" },
+		{ "Category", "Components" },
+		{ "Comment", "// ????????? ??? ??????????? ???? ??????\n" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Warehouse.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWarehouse_Statics::NewProp_StaticMesh = { "StaticMesh", nullptr, (EPropertyFlags)0x00200800000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWarehouse, StaticMesh), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AWarehouse_Statics::NewProp_StaticMesh_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWarehouse_Statics::NewProp_StaticMesh_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWarehouse_Statics::NewProp_ResourceType_MetaData[] = {
 		{ "Category", "Warehouse" },
@@ -200,21 +210,11 @@ void EmptyLinkFunctionForGeneratedCodeWarehouse() {}
 	};
 #endif
 	const UE4CodeGen_Private::FIntPropertyParams Z_Construct_UClass_AWarehouse_Statics::NewProp_StorageLimit = { "StorageLimit", nullptr, (EPropertyFlags)0x0010000000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWarehouse, StorageLimit), METADATA_PARAMS(Z_Construct_UClass_AWarehouse_Statics::NewProp_StorageLimit_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWarehouse_Statics::NewProp_StorageLimit_MetaData)) };
-#if WITH_METADATA
-	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AWarehouse_Statics::NewProp_StaticMesh_MetaData[] = {
-		{ "AllowPrivateAccess", "true" },
-		{ "Category", "Components" },
-		{ "Comment", "// ????????? ??? ??????????? ???? ??????\n" },
-		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "Warehouse.h" },
-	};
-#endif
-	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AWarehouse_Statics::NewProp_StaticMesh = { "StaticMesh", nullptr, (EPropertyFlags)0x00400000000a001d, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AWarehouse, StaticMesh), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AWarehouse_Statics::NewProp_StaticMesh_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_AWarehouse_Statics::NewProp_StaticMesh_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AWarehouse_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWarehouse_Statics::NewProp_StaticMesh,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWarehouse_Statics::NewProp_ResourceType,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWarehouse_Statics::NewProp_ResourceAmount,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWarehouse_Statics::NewProp_StorageLimit,
-		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AWarehouse_Statics::NewProp_StaticMesh,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AWarehouse_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AWarehouse>::IsAbstract,
@@ -243,7 +243,7 @@ void EmptyLinkFunctionForGeneratedCodeWarehouse() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AWarehouse, 178814788);
+	IMPLEMENT_CLASS(AWarehouse, 3843116343);
 	template<> LOGISTIC_API UClass* StaticClass<AWarehouse>()
 	{
 		return AWarehouse::StaticClass();

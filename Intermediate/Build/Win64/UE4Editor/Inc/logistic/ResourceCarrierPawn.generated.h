@@ -8,24 +8,15 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class AActor;
 #ifdef LOGISTIC_ResourceCarrierPawn_generated_h
 #error "ResourceCarrierPawn.generated.h already included, missing '#pragma once' in ResourceCarrierPawn.h"
 #endif
 #define LOGISTIC_ResourceCarrierPawn_generated_h
 
-#define logistic_Source_logistic_ResourceCarrierPawn_h_12_SPARSE_DATA
-#define logistic_Source_logistic_ResourceCarrierPawn_h_12_RPC_WRAPPERS \
- \
-	DECLARE_FUNCTION(execMoveToWarehouse);
-
-
-#define logistic_Source_logistic_ResourceCarrierPawn_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
- \
-	DECLARE_FUNCTION(execMoveToWarehouse);
-
-
-#define logistic_Source_logistic_ResourceCarrierPawn_h_12_INCLASS_NO_PURE_DECLS \
+#define logistic_Source_logistic_ResourceCarrierPawn_h_14_SPARSE_DATA
+#define logistic_Source_logistic_ResourceCarrierPawn_h_14_RPC_WRAPPERS
+#define logistic_Source_logistic_ResourceCarrierPawn_h_14_RPC_WRAPPERS_NO_PURE_DECLS
+#define logistic_Source_logistic_ResourceCarrierPawn_h_14_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAResourceCarrierPawn(); \
 	friend struct Z_Construct_UClass_AResourceCarrierPawn_Statics; \
@@ -34,7 +25,7 @@ public: \
 	DECLARE_SERIALIZER(AResourceCarrierPawn)
 
 
-#define logistic_Source_logistic_ResourceCarrierPawn_h_12_INCLASS \
+#define logistic_Source_logistic_ResourceCarrierPawn_h_14_INCLASS \
 private: \
 	static void StaticRegisterNativesAResourceCarrierPawn(); \
 	friend struct Z_Construct_UClass_AResourceCarrierPawn_Statics; \
@@ -43,7 +34,7 @@ public: \
 	DECLARE_SERIALIZER(AResourceCarrierPawn)
 
 
-#define logistic_Source_logistic_ResourceCarrierPawn_h_12_STANDARD_CONSTRUCTORS \
+#define logistic_Source_logistic_ResourceCarrierPawn_h_14_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API AResourceCarrierPawn(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(AResourceCarrierPawn) \
@@ -56,7 +47,7 @@ private: \
 public:
 
 
-#define logistic_Source_logistic_ResourceCarrierPawn_h_12_ENHANCED_CONSTRUCTORS \
+#define logistic_Source_logistic_ResourceCarrierPawn_h_14_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API AResourceCarrierPawn(AResourceCarrierPawn&&); \
@@ -67,32 +58,31 @@ public: \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(AResourceCarrierPawn)
 
 
-#define logistic_Source_logistic_ResourceCarrierPawn_h_12_PRIVATE_PROPERTY_OFFSET \
-	FORCEINLINE static uint32 __PPO__StaticMesh() { return STRUCT_OFFSET(AResourceCarrierPawn, StaticMesh); } \
-	FORCEINLINE static uint32 __PPO__NavSystem() { return STRUCT_OFFSET(AResourceCarrierPawn, NavSystem); }
+#define logistic_Source_logistic_ResourceCarrierPawn_h_14_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__StaticMesh() { return STRUCT_OFFSET(AResourceCarrierPawn, StaticMesh); }
 
 
-#define logistic_Source_logistic_ResourceCarrierPawn_h_9_PROLOG
-#define logistic_Source_logistic_ResourceCarrierPawn_h_12_GENERATED_BODY_LEGACY \
+#define logistic_Source_logistic_ResourceCarrierPawn_h_11_PROLOG
+#define logistic_Source_logistic_ResourceCarrierPawn_h_14_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	logistic_Source_logistic_ResourceCarrierPawn_h_12_PRIVATE_PROPERTY_OFFSET \
-	logistic_Source_logistic_ResourceCarrierPawn_h_12_SPARSE_DATA \
-	logistic_Source_logistic_ResourceCarrierPawn_h_12_RPC_WRAPPERS \
-	logistic_Source_logistic_ResourceCarrierPawn_h_12_INCLASS \
-	logistic_Source_logistic_ResourceCarrierPawn_h_12_STANDARD_CONSTRUCTORS \
+	logistic_Source_logistic_ResourceCarrierPawn_h_14_PRIVATE_PROPERTY_OFFSET \
+	logistic_Source_logistic_ResourceCarrierPawn_h_14_SPARSE_DATA \
+	logistic_Source_logistic_ResourceCarrierPawn_h_14_RPC_WRAPPERS \
+	logistic_Source_logistic_ResourceCarrierPawn_h_14_INCLASS \
+	logistic_Source_logistic_ResourceCarrierPawn_h_14_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define logistic_Source_logistic_ResourceCarrierPawn_h_12_GENERATED_BODY \
+#define logistic_Source_logistic_ResourceCarrierPawn_h_14_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	logistic_Source_logistic_ResourceCarrierPawn_h_12_PRIVATE_PROPERTY_OFFSET \
-	logistic_Source_logistic_ResourceCarrierPawn_h_12_SPARSE_DATA \
-	logistic_Source_logistic_ResourceCarrierPawn_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
-	logistic_Source_logistic_ResourceCarrierPawn_h_12_INCLASS_NO_PURE_DECLS \
-	logistic_Source_logistic_ResourceCarrierPawn_h_12_ENHANCED_CONSTRUCTORS \
+	logistic_Source_logistic_ResourceCarrierPawn_h_14_PRIVATE_PROPERTY_OFFSET \
+	logistic_Source_logistic_ResourceCarrierPawn_h_14_SPARSE_DATA \
+	logistic_Source_logistic_ResourceCarrierPawn_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+	logistic_Source_logistic_ResourceCarrierPawn_h_14_INCLASS_NO_PURE_DECLS \
+	logistic_Source_logistic_ResourceCarrierPawn_h_14_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

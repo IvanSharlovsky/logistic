@@ -2,53 +2,74 @@
 
 
 #include "ResourceCarrierPawn.h"
+#include "Warehouse.h"
 #include "Components/StaticMeshComponent.h"
-#include "Kismet/GameplayStatics.h"
-#include "NavigationSystem.h"
-#include "GameFramework/PlayerController.h"
-#include "AIController.h"
+#include "Kismet/KismetMathLibrary.h"
 
+// Конструктор
 AResourceCarrierPawn::AResourceCarrierPawn()
 {
-    // Создание и настройка StaticMesh компонента
+    // Инициализация StaticMesh компонента
     StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
     RootComponent = StaticMesh;
 
-    // Загрузка меша шара из стандартных ресурсов Unreal Engine
-    static ConstructorHelpers::FObjectFinder<UStaticMesh> SphereMesh(TEXT("/Engine/BasicShapes/Sphere.Sphere"));
-    if (SphereMesh.Succeeded())
-    {
-        StaticMesh->SetStaticMesh(SphereMesh.Object);
-    }
+    // Установка скорости движения по умолчанию
+    MovementSpeed = 300.0f;
 
-    // Включение обновлений каждого кадра
-    PrimaryActorTick.bCanEverTick = true;
+    // Установим, что Pawn может быть контролируемым через AIController
+    AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
+
+    // Грузчик не движется по умолчанию
+    bIsMoving = false;
 }
 
+// Функция BeginPlay
 void AResourceCarrierPawn::BeginPlay()
 {
     Super::BeginPlay();
-    // Получение текущей системы навигации
-    NavSystem = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
 }
 
+// Функция, вызываемая каждый кадр
 void AResourceCarrierPawn::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
-    // Логика перемещения и взаимодействия
-}
 
-void AResourceCarrierPawn::MoveToWarehouse(AActor* TargetWarehouse)
-{
-    if (NavSystem && TargetWarehouse)
+    if (bIsMoving && TargetWarehouse)
     {
-        // Используем AIController для перемещения грузчика
-        AAIController* AIController = Cast<AAIController>(GetController());
-        if (AIController)
-        {
-            // Перемещение грузчика к цели
-            AIController->MoveToActor(TargetWarehouse, 5.0f); // 5.0f - допустимое расстояние до цели
-        }
+        // Перемещение к складу
+        MoveToWarehouse(DeltaTime);
     }
 }
 
+// Устанавливаем цель для перемещения (склад)
+void AResourceCarrierPawn::SetTargetWarehouse(AWarehouse* Target)
+{
+    TargetWarehouse = Target;
+    bIsMoving = true;
+}
+
+// Реализация перемещения к складу
+void AResourceCarrierPawn::MoveToWarehouse(float DeltaTime)
+{
+    if (TargetWarehouse)
+    {
+        FVector TargetLocation = TargetWarehouse->GetActorLocation();
+        FVector CurrentLocation = GetActorLocation();
+
+        // Рассчитываем направление движения
+        FVector Direction = (TargetLocation - CurrentLocation).GetSafeNormal();
+
+        // Вычисляем новую позицию
+        FVector NewLocation = CurrentLocation + (Direction * MovementSpeed * DeltaTime);
+
+        // Обновляем позицию
+        SetActorLocation(NewLocation);
+
+        // Проверяем, достигли ли мы цели
+        if (FVector::Dist(CurrentLocation, TargetLocation) < 100.0f) // 100.0f - допустимое расстояние до склада
+        {
+            bIsMoving = false; // Останавливаем движение
+            // Здесь можно добавить логику для выгрузки/загрузки ресурсов
+        }
+    }
+}

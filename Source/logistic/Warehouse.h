@@ -19,6 +19,10 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+    // Компонент для отображения меша склада
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+    UStaticMeshComponent* StaticMesh;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -42,10 +46,4 @@ public:
     // Метод для извлечения ресурса
     UFUNCTION(BlueprintCallable, Category = "Warehouse")
     bool RemoveResource(int32 Amount);
-
-private:
-	// Компонент для отображения меша склада
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* StaticMesh;
-
 };

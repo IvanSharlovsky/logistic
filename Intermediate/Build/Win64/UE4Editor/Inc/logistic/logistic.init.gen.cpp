@@ -21,7 +21,7 @@ void EmptyLinkFunctionForGeneratedCodelogistic_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0xC2F017EE,
+				0x96C3F244,
 				0x865074F7,
 				METADATA_PARAMS(nullptr, 0)
 			};
