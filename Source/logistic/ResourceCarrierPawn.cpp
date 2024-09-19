@@ -4,7 +4,8 @@
 #include "ResourceCarrierPawn.h"
 #include "Warehouse.h"
 #include "Components/StaticMeshComponent.h"
-#include "Kismet/KismetMathLibrary.h"
+#include "Engine/World.h"
+#include "TimerManager.h"
 
 // Конструктор
 AResourceCarrierPawn::AResourceCarrierPawn()
@@ -16,17 +17,21 @@ AResourceCarrierPawn::AResourceCarrierPawn()
     // Установка скорости движения по умолчанию
     MovementSpeed = 300.0f;
 
-    // Установим, что Pawn может быть контролируемым через AIController
-    AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
-
-    // Грузчик не движется по умолчанию
-    bIsMoving = false;
+    // Инициализируем переменные
+    bIsMoving = false;  // Грузчик не движется по умолчанию
+    CurrentWarehouseIndex = 0;
 }
 
 // Функция BeginPlay
 void AResourceCarrierPawn::BeginPlay()
 {
     Super::BeginPlay();
+
+    // Начинаем перемещение к первому складу
+    if (Warehouses.Num() > 0)
+    {
+        MoveToNextWarehouse();
+    }
 }
 
 // Функция, вызываемая каждый кадр
@@ -34,42 +39,71 @@ void AResourceCarrierPawn::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 
-    if (bIsMoving && TargetWarehouse)
+    // Если грузчик движется, продолжаем движение к складу
+    if (bIsMoving && Warehouses.IsValidIndex(CurrentWarehouseIndex))
     {
-        // Перемещение к складу
         MoveToWarehouse(DeltaTime);
     }
 }
-
-// Устанавливаем цель для перемещения (склад)
-void AResourceCarrierPawn::SetTargetWarehouse(AWarehouse* Target)
+// Функция для задания списка складов
+void AResourceCarrierPawn::SetWarehouses(const TArray<AWarehouse*>& WarehousesList)
 {
-    TargetWarehouse = Target;
-    bIsMoving = true;
+    Warehouses = WarehousesList;
+}
+
+// Функция перемещения к следующему складу
+void AResourceCarrierPawn::MoveToNextWarehouse()
+{
+    // Проверяем, что индекс склада действителен
+    if (Warehouses.IsValidIndex(CurrentWarehouseIndex))
+    {
+        bIsMoving = true;
+    }
+    else
+    {
+        // Если вышли за пределы массива, сбрасываем индекс и продолжаем с начала
+        CurrentWarehouseIndex = 0;
+        bIsMoving = true;
+    }
 }
 
 // Реализация перемещения к складу
 void AResourceCarrierPawn::MoveToWarehouse(float DeltaTime)
 {
-    if (TargetWarehouse)
+    if (Warehouses.IsValidIndex(CurrentWarehouseIndex))
     {
+        AWarehouse* TargetWarehouse = Warehouses[CurrentWarehouseIndex];
         FVector TargetLocation = TargetWarehouse->GetActorLocation();
         FVector CurrentLocation = GetActorLocation();
 
         // Рассчитываем направление движения
         FVector Direction = (TargetLocation - CurrentLocation).GetSafeNormal();
 
-        // Вычисляем новую позицию
-        FVector NewLocation = CurrentLocation + (Direction * MovementSpeed * DeltaTime);
+        // Перемещаем грузчика
+        SetActorLocation(CurrentLocation + Direction * MovementSpeed * DeltaTime);
 
-        // Обновляем позицию
-        SetActorLocation(NewLocation);
-
-        // Проверяем, достигли ли мы цели
-        if (FVector::Dist(CurrentLocation, TargetLocation) < 100.0f) // 100.0f - допустимое расстояние до склада
+        // Проверяем, достигли ли цели
+        if (FVector::Dist(CurrentLocation, TargetLocation) < 100.0f)
         {
-            bIsMoving = false; // Останавливаем движение
-            // Здесь можно добавить логику для выгрузки/загрузки ресурсов
+            bIsMoving = false;
+            /*
+            // Логика передачи ресурсов
+            if (AWarehouse* Warehouse = Cast<AWarehouse>(TargetWarehouse))
+            {
+                Warehouse->AddResource(ResourceType, ResourceAmount); // Добавляем ресурсы на склад
+            }
+            */
+            // Делаем паузу на 3 секунды
+            GetWorldTimerManager().SetTimer(TimerHandle_WaitAtWarehouse, this, &AResourceCarrierPawn::WaitAtWarehouse, 3.0f, false);
         }
     }
+}
+
+void AResourceCarrierPawn::WaitAtWarehouse()
+{
+    // Переходим к следующему складу
+    CurrentWarehouseIndex++;
+
+    // Начинаем движение к следующему складу
+    MoveToNextWarehouse();
 }

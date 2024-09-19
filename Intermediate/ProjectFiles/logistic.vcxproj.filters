@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\logistic.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{F49B46D8-E402-41CF-B830-4829BD8AC706}</UniqueIdentifier>
+      <UniqueIdentifier>{A5D9CCBC-E010-48F4-A6E6-21FB385AFA68}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\logistic.Target.cs">
       <Filter>Source</Filter>
@@ -15,7 +15,7 @@
     <None Include="..\..\.gitattributes" />
     <None Include="..\..\.gitignore" />
     <Filter Include="Config">
-      <UniqueIdentifier>{661F3935-55DD-4A70-9608-517AC64DDB8D}</UniqueIdentifier>
+      <UniqueIdentifier>{6A18C49A-27F3-4555-8BB8-34B735D970BD}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -27,7 +27,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\logistic">
-      <UniqueIdentifier>{48E66605-A436-4461-9D97-0F07D6A08102}</UniqueIdentifier>
+      <UniqueIdentifier>{B9332005-5347-4F4B-B0A7-A04DD835847C}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\logistic\logistic.Build.cs">
       <Filter>Source\logistic</Filter>
@@ -36,6 +36,12 @@
       <Filter>Source\logistic</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\logistic\logistic.h">
+      <Filter>Source\logistic</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\logistic\LogisticGameMode.cpp">
+      <Filter>Source\logistic</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\logistic\LogisticGameMode.h">
       <Filter>Source\logistic</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\logistic\logisticGameModeBase.cpp">

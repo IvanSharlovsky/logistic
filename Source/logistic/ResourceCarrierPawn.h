@@ -23,8 +23,8 @@ public:
     // Переопределение Tick для обновления каждый кадр
     virtual void Tick(float DeltaTime) override;
 
-    // Функция для задания склада, к которому нужно двигаться
-    void SetTargetWarehouse(AWarehouse* Target);
+    // Функция для задания списка складов
+    void SetWarehouses(const TArray<AWarehouse*>& WarehousesList);
 
     // Скорость перемещения
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
@@ -35,12 +35,24 @@ protected:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
     UStaticMeshComponent* StaticMesh;
 
-    // Склад, к которому движется грузчик
-    AWarehouse* TargetWarehouse;
+    // Список складов для перемещения
+    TArray<AWarehouse*> Warehouses;
 
-    // Флаг, обозначающий, нужно ли двигаться
+    // Индекс текущего склада
+    int32 CurrentWarehouseIndex;
+
+    // Флаг для обозначения, идет ли перемещение
     bool bIsMoving;
 
-    // Функция перемещения к складу
+    // Таймер для задержки между перемещениями
+    FTimerHandle TimerHandle_WaitAtWarehouse;
+
+    // Функция перемещения к следующему складу
+    void MoveToNextWarehouse();
+
+    // Функция для перемещения грузчика
     void MoveToWarehouse(float DeltaTime);
+
+    // Функция для задержки в 3 секунды на складе
+    void WaitAtWarehouse();
 };
