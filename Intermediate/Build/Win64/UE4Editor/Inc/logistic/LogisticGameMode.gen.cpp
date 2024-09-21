@@ -105,7 +105,7 @@ void EmptyLinkFunctionForGeneratedCodeLogisticGameMode() {}
 		{ "ModuleRelativePath", "LogisticGameMode.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_ALogisticGameMode_Statics::NewProp_WarehouseClass = { "WarehouseClass", nullptr, (EPropertyFlags)0x0024080000000001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ALogisticGameMode, WarehouseClass), Z_Construct_UClass_AWarehouse_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ALogisticGameMode_Statics::NewProp_WarehouseClass_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ALogisticGameMode_Statics::NewProp_WarehouseClass_MetaData)) };
+	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_ALogisticGameMode_Statics::NewProp_WarehouseClass = { "WarehouseClass", nullptr, (EPropertyFlags)0x0024080000000005, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(ALogisticGameMode, WarehouseClass), Z_Construct_UClass_AWarehouse_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_ALogisticGameMode_Statics::NewProp_WarehouseClass_MetaData, UE_ARRAY_COUNT(Z_Construct_UClass_ALogisticGameMode_Statics::NewProp_WarehouseClass_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ALogisticGameMode_Statics::NewProp_CarrierPawn_MetaData[] = {
 		{ "Comment", "// ?????? ?? ????????\n" },
@@ -144,7 +144,7 @@ void EmptyLinkFunctionForGeneratedCodeLogisticGameMode() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(ALogisticGameMode, 1647948773);
+	IMPLEMENT_CLASS(ALogisticGameMode, 2201670264);
 	template<> LOGISTIC_API UClass* StaticClass<ALogisticGameMode>()
 	{
 		return ALogisticGameMode::StaticClass();

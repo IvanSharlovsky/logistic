@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "Warehouse.h"
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
 #include "LogisticGameMode.generated.h"
@@ -20,10 +21,16 @@ public:
 
 protected:
     // Референс на класс склада для спауна
-    UPROPERTY(EditAnywhere, Category = "Warehouse")
-    TSubclassOf<AWarehouse> WarehouseClass;
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Warehouse")
+    TSubclassOf<class AWarehouse> WarehouseClass;
+
+    // Храним склады в виде массива массивов по типам ресурсов
+    TMap<int32, TArray<AWarehouse*>> Warehouses;
 
     // Ссылка на грузчика
     UPROPERTY()
     class AResourceCarrierPawn* CarrierPawn;
+
+    // Добавляем новый склад в массив
+    void AddWarehouseToArray(AWarehouse* NewWarehouse);
 };

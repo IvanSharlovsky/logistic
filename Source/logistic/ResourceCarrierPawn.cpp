@@ -14,11 +14,15 @@ AResourceCarrierPawn::AResourceCarrierPawn()
     StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
     RootComponent = StaticMesh;
 
-    // Установка скорости движения по умолчанию
-    MovementSpeed = 300.0f;
+    PrimaryActorTick.bCanEverTick = true;
 
-    // Инициализируем переменные
-    bIsMoving = false;  // Грузчик не движется по умолчанию
+    // Установка скорости движения по умолчанию
+    MovementSpeed = 600.0f;
+
+    // Грузчик не движется по умолчанию
+    bIsMoving = false;  
+    // Начинаем с первого типа ресурса
+    CurrentResourceType = 1;
     CurrentWarehouseIndex = 0;
 }
 
@@ -27,11 +31,13 @@ void AResourceCarrierPawn::BeginPlay()
 {
     Super::BeginPlay();
 
-    // Начинаем перемещение к первому складу
-    if (Warehouses.Num() > 0)
-    {
-        MoveToNextWarehouse();
-    }
+    UE_LOG(LogTemp, Log, TEXT("ResourceCarrierPawn: BeginPlay: Calling MoveToNextWarehouse()"));
+    MoveToNextWarehouse();
+}
+
+void AResourceCarrierPawn::SetWarehouses(TMap<int32, TArray<AWarehouse*>>* WarehouseList)
+{
+    WarehousePtr = WarehouseList;
 }
 
 // Функция, вызываемая каждый кадр
@@ -40,29 +46,36 @@ void AResourceCarrierPawn::Tick(float DeltaTime)
     Super::Tick(DeltaTime);
 
     // Если грузчик движется, продолжаем движение к складу
-    if (bIsMoving && Warehouses.IsValidIndex(CurrentWarehouseIndex))
+    if (bIsMoving)
     {
-        MoveToWarehouse(DeltaTime);
+        if (WarehousePtr && (*WarehousePtr)[CurrentResourceType].IsValidIndex(CurrentWarehouseIndex))
+        {
+            MoveToWarehouse(DeltaTime);
+        }
+        else
+        {
+            UE_LOG(LogTemp, Warning, TEXT("ResourceCarrierPawn: Tick: Warehouse %d not available for resource type: %d"), CurrentWarehouseIndex, CurrentResourceType);
+            MoveToNextWarehouse();
+        }
     }
-}
-// Функция для задания списка складов
-void AResourceCarrierPawn::SetWarehouses(const TArray<AWarehouse*>& WarehousesList)
-{
-    Warehouses = WarehousesList;
+    else
+    {
+        //UE_LOG(LogTemp, Log, TEXT("Not moving"));
+    }
 }
 
 // Функция перемещения к следующему складу
 void AResourceCarrierPawn::MoveToNextWarehouse()
 {
     // Проверяем, что индекс склада действителен
-    if (Warehouses.IsValidIndex(CurrentWarehouseIndex))
+    if (WarehousePtr && (*WarehousePtr)[CurrentResourceType].IsValidIndex(CurrentWarehouseIndex))
     {
         bIsMoving = true;
     }
     else
     {
-        // Если вышли за пределы массива, сбрасываем индекс и продолжаем с начала
-        CurrentWarehouseIndex = 0;
+        UE_LOG(LogTemp, Log, TEXT("ResourceCarrierPawn: MoveToNextWarehouse: Calling SwitchResourceType()"));
+        SwitchResourceType();
         bIsMoving = true;
     }
 }
@@ -70,40 +83,84 @@ void AResourceCarrierPawn::MoveToNextWarehouse()
 // Реализация перемещения к складу
 void AResourceCarrierPawn::MoveToWarehouse(float DeltaTime)
 {
-    if (Warehouses.IsValidIndex(CurrentWarehouseIndex))
+    const TArray<AWarehouse*>& CurrentWarehouses = (*WarehousePtr)[CurrentResourceType];
+
+    if (CurrentWarehouseIndex < CurrentWarehouses.Num())
     {
-        AWarehouse* TargetWarehouse = Warehouses[CurrentWarehouseIndex];
-        FVector TargetLocation = TargetWarehouse->GetActorLocation();
-        FVector CurrentLocation = GetActorLocation();
-
-        // Рассчитываем направление движения
-        FVector Direction = (TargetLocation - CurrentLocation).GetSafeNormal();
-
-        // Перемещаем грузчика
-        SetActorLocation(CurrentLocation + Direction * MovementSpeed * DeltaTime);
-
-        // Проверяем, достигли ли цели
-        if (FVector::Dist(CurrentLocation, TargetLocation) < 100.0f)
+        AWarehouse* TargetWarehouse = CurrentWarehouses[CurrentWarehouseIndex];
+        if (TargetWarehouse)
         {
-            bIsMoving = false;
-            /*
-            // Логика передачи ресурсов
-            if (AWarehouse* Warehouse = Cast<AWarehouse>(TargetWarehouse))
+            FVector TargetLocation = TargetWarehouse->GetActorLocation();
+            FVector CurrentLocation = GetActorLocation();
+
+            // Рассчитываем направление движения
+            FVector Direction = (TargetLocation - CurrentLocation).GetSafeNormal();
+
+            // Перемещаем грузчика
+            SetActorLocation(CurrentLocation + Direction * MovementSpeed * DeltaTime);
+
+            // Проверяем, достигли ли цели
+            if (FVector::Dist(CurrentLocation, TargetLocation) < 100.0f)
             {
-                Warehouse->AddResource(ResourceType, ResourceAmount); // Добавляем ресурсы на склад
+                bIsMoving = false;
+                /*
+                // Логика передачи ресурсов
+                if (AWarehouse* Warehouse = Cast<AWarehouse>(TargetWarehouse))
+                {
+                    Warehouse->AddResource(ResourceType, ResourceAmount); // Добавляем ресурсы на склад
+                }
+                */
+                // Делаем паузу на 1 секунду
+                UE_LOG(LogTemp, Log, TEXT("ResourceCarrierPawn: MoveToWarehouse: Calling GetWorldTimerManager()"));
+                GetWorldTimerManager().SetTimer(TimerHandle_WaitAtWarehouse, this, &AResourceCarrierPawn::WaitAtWarehouse, 1.0f, false);
             }
-            */
-            // Делаем паузу на 3 секунды
-            GetWorldTimerManager().SetTimer(TimerHandle_WaitAtWarehouse, this, &AResourceCarrierPawn::WaitAtWarehouse, 3.0f, false);
         }
+        else
+        {
+            UE_LOG(LogTemp, Error, TEXT("TargetWarehouse is null at index %d for resource type %d"), CurrentWarehouseIndex, CurrentResourceType);
+        }
+    }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("Invalid warehouse index: %d for resource type: %d"), CurrentWarehouseIndex, CurrentResourceType);
+        UE_LOG(LogTemp, Warning, TEXT("ResourceCarrierPawn: MoveToWarehouse: Calling MoveToNextWarehouse()"));
+        MoveToNextWarehouse();
     }
 }
 
 void AResourceCarrierPawn::WaitAtWarehouse()
 {
-    // Переходим к следующему складу
+    // Переходим к следующему складу в массиве
     CurrentWarehouseIndex++;
+    UE_LOG(LogTemp, Log, TEXT("ResourceCarrierPawn: WaitAtWarehouse: CurrentResourceType = %d, NextWarehouseIndex = %d"), CurrentResourceType, CurrentWarehouseIndex);
 
     // Начинаем движение к следующему складу
+    UE_LOG(LogTemp, Log, TEXT("ResourceCarrierPawn: WaitAtWarehouse: Calling MoveToNextWarehouse()"));
     MoveToNextWarehouse();
+}
+
+void AResourceCarrierPawn::SwitchResourceType()
+{
+    UE_LOG(LogTemp, Log, TEXT("ResourceCarrierPawn: SwitchResourceType: Number of resource types (Warehouses.Num()): %d"), (*WarehousePtr).Num());
+    if ((*WarehousePtr).Num() == 0)
+    {
+        UE_LOG(LogTemp, Error, TEXT("No warehouses available to switch resource types!"));
+        return;
+    }
+    UE_LOG(LogTemp, Log, TEXT("doing %"));
+    // Если дошли до конца списка, переключаемся на следующий тип ресурса
+    CurrentResourceType = (CurrentResourceType + 1) % ((*WarehousePtr).Num() + 1);
+
+    // Проверяем, есть ли склады для нового типа ресурса
+    UE_LOG(LogTemp, Log, TEXT("ResourceCarrierPawn: SwitchResourceType: CurrentResourceType = %d"), CurrentResourceType);
+    while (!(*WarehousePtr).Contains(CurrentResourceType))
+    {
+        // Если складов нет, продолжаем переключать типы ресурсов
+        CurrentResourceType = (CurrentResourceType + 1) % ((*WarehousePtr).Num() + 1);
+    }
+
+    CurrentWarehouseIndex = 0;
+
+    UE_LOG(LogTemp, Log, TEXT("ResourceCarrierPawn: SwitchResourceType: CurrentResourceType = %d, CurrentWarehouseIndex = %d"), CurrentResourceType, CurrentWarehouseIndex);
+
 }

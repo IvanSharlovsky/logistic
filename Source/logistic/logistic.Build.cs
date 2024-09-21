@@ -6,7 +6,9 @@ public class logistic : ModuleRules
 {
 	public logistic(ReadOnlyTargetRules Target) : base(Target)
 	{
-		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+        PublicDefinitions.Add("PLATFORM_WINDOWS_INCREASE_LINKER_HEAP_SIZE=1");
+
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
 		PublicDependencyModuleNames.AddRange(new string[] { 
 			"Core", 

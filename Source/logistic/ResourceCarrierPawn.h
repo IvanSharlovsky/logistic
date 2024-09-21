@@ -24,7 +24,10 @@ public:
     virtual void Tick(float DeltaTime) override;
 
     // Функция для задания списка складов
-    void SetWarehouses(const TArray<AWarehouse*>& WarehousesList);
+    void SetWarehouses(TMap<int32, TArray<AWarehouse*>>* WarehouseList);
+
+    //// Добавление нового склада в список
+    //void AddWarehouse(AWarehouse* Warehouse);
 
     // Скорость перемещения
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
@@ -35,11 +38,14 @@ protected:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
     UStaticMeshComponent* StaticMesh;
 
-    // Список складов для перемещения
-    TArray<AWarehouse*> Warehouses;
+    // Текущий тип ресурса, с которым работает грузчик
+    int32 CurrentResourceType;
 
     // Индекс текущего склада
     int32 CurrentWarehouseIndex;
+
+    // Списки складов по типам ресурсов (указатель на карту из GameMode)
+    TMap<int32, TArray<AWarehouse*>>* WarehousePtr;
 
     // Флаг для обозначения, идет ли перемещение
     bool bIsMoving;
@@ -53,6 +59,9 @@ protected:
     // Функция для перемещения грузчика
     void MoveToWarehouse(float DeltaTime);
 
-    // Функция для задержки в 3 секунды на складе
+    // Функция для задержки на складе
     void WaitAtWarehouse();
+
+    // Функция для нового обхода складов
+    void SwitchResourceType();
 };
