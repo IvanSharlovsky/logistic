@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+п»ї// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -14,27 +14,27 @@ class LOGISTIC_API ALogisticGameMode : public AGameModeBase
     GENERATED_BODY()
 
 public:
-    // Конструктор
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
     ALogisticGameMode();
 
     virtual void BeginPlay() override;
 
-    // Функция для спауна склада
+    // Р¤СѓРЅРєС†РёСЏ РґР»СЏ СЃРїР°СѓРЅР° СЃРєР»Р°РґР°
     UFUNCTION(BlueprintCallable, Category = "Warehouse")
     void SpawnWarehouse();
 
 protected:
-    // Референс на класс склада для спауна
+    // Р РµС„РµСЂРµРЅСЃ РЅР° РєР»Р°СЃСЃ СЃРєР»Р°РґР° РґР»СЏ СЃРїР°СѓРЅР°
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Warehouse")
     TSubclassOf<class AWarehouse> WarehouseClass;
 
-    // Храним склады в виде массива массивов по типам ресурсов
+    // РҐСЂР°РЅРёРј СЃРєР»Р°РґС‹ РІ РІРёРґРµ РјР°СЃСЃРёРІР° РјР°СЃСЃРёРІРѕРІ РїРѕ С‚РёРїР°Рј СЂРµСЃСѓСЂСЃРѕРІ
     TMap<int32, TArray<AWarehouse*>> Warehouses;
 
-    // Ссылка на грузчика
+    // РЎСЃС‹Р»РєР° РЅР° РіСЂСѓР·С‡РёРєР°
     UPROPERTY()
     class AResourceCarrierPawn* CarrierPawn;
 
-    // Добавляем новый склад в массив
+    // Р”РѕР±Р°РІР»СЏРµРј РЅРѕРІС‹Р№ СЃРєР»Р°Рґ РІ РјР°СЃСЃРёРІ
     void AddWarehouseToArray(AWarehouse* NewWarehouse);
 };

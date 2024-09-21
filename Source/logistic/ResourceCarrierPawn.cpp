@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+п»ї// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "ResourceCarrierPawn.h"
@@ -7,26 +7,26 @@
 #include "Engine/World.h"
 #include "TimerManager.h"
 
-// Конструктор
+// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 AResourceCarrierPawn::AResourceCarrierPawn()
 {
-    // Инициализация StaticMesh компонента
+    // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ StaticMesh РєРѕРјРїРѕРЅРµРЅС‚Р°
     StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
     RootComponent = StaticMesh;
 
     PrimaryActorTick.bCanEverTick = true;
 
-    // Установка скорости движения по умолчанию
+    // РЈСЃС‚Р°РЅРѕРІРєР° СЃРєРѕСЂРѕСЃС‚Рё РґРІРёР¶РµРЅРёСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
     MovementSpeed = 600.0f;
 
-    // Грузчик не движется по умолчанию
+    // Р“СЂСѓР·С‡РёРє РЅРµ РґРІРёР¶РµС‚СЃСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
     bIsMoving = false;  
-    // Начинаем с первого типа ресурса
+    // РќР°С‡РёРЅР°РµРј СЃ РїРµСЂРІРѕРіРѕ С‚РёРїР° СЂРµСЃСѓСЂСЃР°
     CurrentResourceType = 1;
     CurrentWarehouseIndex = 0;
 }
 
-// Функция BeginPlay
+// Р¤СѓРЅРєС†РёСЏ BeginPlay
 void AResourceCarrierPawn::BeginPlay()
 {
     Super::BeginPlay();
@@ -40,12 +40,12 @@ void AResourceCarrierPawn::SetWarehouses(TMap<int32, TArray<AWarehouse*>>* Wareh
     WarehousePtr = WarehouseList;
 }
 
-// Функция, вызываемая каждый кадр
+// Р¤СѓРЅРєС†РёСЏ, РІС‹Р·С‹РІР°РµРјР°СЏ РєР°Р¶РґС‹Р№ РєР°РґСЂ
 void AResourceCarrierPawn::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 
-    // Если грузчик движется, продолжаем движение к складу
+    // Р•СЃР»Рё РіСЂСѓР·С‡РёРє РґРІРёР¶РµС‚СЃСЏ, РїСЂРѕРґРѕР»Р¶Р°РµРј РґРІРёР¶РµРЅРёРµ Рє СЃРєР»Р°РґСѓ
     if (bIsMoving)
     {
         if (WarehousePtr && (*WarehousePtr)[CurrentResourceType].IsValidIndex(CurrentWarehouseIndex))
@@ -64,10 +64,10 @@ void AResourceCarrierPawn::Tick(float DeltaTime)
     }
 }
 
-// Функция перемещения к следующему складу
+// Р¤СѓРЅРєС†РёСЏ РїРµСЂРµРјРµС‰РµРЅРёСЏ Рє СЃР»РµРґСѓСЋС‰РµРјСѓ СЃРєР»Р°РґСѓ
 void AResourceCarrierPawn::MoveToNextWarehouse()
 {
-    // Проверяем, что индекс склада действителен
+    // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ РёРЅРґРµРєСЃ СЃРєР»Р°РґР° РґРµР№СЃС‚РІРёС‚РµР»РµРЅ
     if (WarehousePtr && (*WarehousePtr)[CurrentResourceType].IsValidIndex(CurrentWarehouseIndex))
     {
         bIsMoving = true;
@@ -80,7 +80,7 @@ void AResourceCarrierPawn::MoveToNextWarehouse()
     }
 }
 
-// Реализация перемещения к складу
+// Р РµР°Р»РёР·Р°С†РёСЏ РїРµСЂРµРјРµС‰РµРЅРёСЏ Рє СЃРєР»Р°РґСѓ
 void AResourceCarrierPawn::MoveToWarehouse(float DeltaTime)
 {
     const TArray<AWarehouse*>& CurrentWarehouses = (*WarehousePtr)[CurrentResourceType];
@@ -93,24 +93,24 @@ void AResourceCarrierPawn::MoveToWarehouse(float DeltaTime)
             FVector TargetLocation = TargetWarehouse->GetActorLocation();
             FVector CurrentLocation = GetActorLocation();
 
-            // Рассчитываем направление движения
+            // Р Р°СЃСЃС‡РёС‚С‹РІР°РµРј РЅР°РїСЂР°РІР»РµРЅРёРµ РґРІРёР¶РµРЅРёСЏ
             FVector Direction = (TargetLocation - CurrentLocation).GetSafeNormal();
 
-            // Перемещаем грузчика
+            // РџРµСЂРµРјРµС‰Р°РµРј РіСЂСѓР·С‡РёРєР°
             SetActorLocation(CurrentLocation + Direction * MovementSpeed * DeltaTime);
 
-            // Проверяем, достигли ли цели
+            // РџСЂРѕРІРµСЂСЏРµРј, РґРѕСЃС‚РёРіР»Рё Р»Рё С†РµР»Рё
             if (FVector::Dist(CurrentLocation, TargetLocation) < 100.0f)
             {
                 bIsMoving = false;
                 /*
-                // Логика передачи ресурсов
+                // Р›РѕРіРёРєР° РїРµСЂРµРґР°С‡Рё СЂРµСЃСѓСЂСЃРѕРІ
                 if (AWarehouse* Warehouse = Cast<AWarehouse>(TargetWarehouse))
                 {
-                    Warehouse->AddResource(ResourceType, ResourceAmount); // Добавляем ресурсы на склад
+                    Warehouse->AddResource(ResourceType, ResourceAmount); // Р”РѕР±Р°РІР»СЏРµРј СЂРµСЃСѓСЂСЃС‹ РЅР° СЃРєР»Р°Рґ
                 }
                 */
-                // Делаем паузу на 1 секунду
+                // Р”РµР»Р°РµРј РїР°СѓР·Сѓ РЅР° 1 СЃРµРєСѓРЅРґСѓ
                 UE_LOG(LogTemp, Log, TEXT("ResourceCarrierPawn: MoveToWarehouse: Calling GetWorldTimerManager()"));
                 GetWorldTimerManager().SetTimer(TimerHandle_WaitAtWarehouse, this, &AResourceCarrierPawn::WaitAtWarehouse, 1.0f, false);
             }
@@ -130,11 +130,11 @@ void AResourceCarrierPawn::MoveToWarehouse(float DeltaTime)
 
 void AResourceCarrierPawn::WaitAtWarehouse()
 {
-    // Переходим к следующему складу в массиве
+    // РџРµСЂРµС…РѕРґРёРј Рє СЃР»РµРґСѓСЋС‰РµРјСѓ СЃРєР»Р°РґСѓ РІ РјР°СЃСЃРёРІРµ
     CurrentWarehouseIndex++;
     UE_LOG(LogTemp, Log, TEXT("ResourceCarrierPawn: WaitAtWarehouse: CurrentResourceType = %d, NextWarehouseIndex = %d"), CurrentResourceType, CurrentWarehouseIndex);
 
-    // Начинаем движение к следующему складу
+    // РќР°С‡РёРЅР°РµРј РґРІРёР¶РµРЅРёРµ Рє СЃР»РµРґСѓСЋС‰РµРјСѓ СЃРєР»Р°РґСѓ
     UE_LOG(LogTemp, Log, TEXT("ResourceCarrierPawn: WaitAtWarehouse: Calling MoveToNextWarehouse()"));
     MoveToNextWarehouse();
 }
@@ -148,14 +148,14 @@ void AResourceCarrierPawn::SwitchResourceType()
         return;
     }
     UE_LOG(LogTemp, Log, TEXT("doing %"));
-    // Если дошли до конца списка, переключаемся на следующий тип ресурса
+    // Р•СЃР»Рё РґРѕС€Р»Рё РґРѕ РєРѕРЅС†Р° СЃРїРёСЃРєР°, РїРµСЂРµРєР»СЋС‡Р°РµРјСЃСЏ РЅР° СЃР»РµРґСѓСЋС‰РёР№ С‚РёРї СЂРµСЃСѓСЂСЃР°
     CurrentResourceType = (CurrentResourceType + 1) % ((*WarehousePtr).Num() + 1);
 
-    // Проверяем, есть ли склады для нового типа ресурса
+    // РџСЂРѕРІРµСЂСЏРµРј, РµСЃС‚СЊ Р»Рё СЃРєР»Р°РґС‹ РґР»СЏ РЅРѕРІРѕРіРѕ С‚РёРїР° СЂРµСЃСѓСЂСЃР°
     UE_LOG(LogTemp, Log, TEXT("ResourceCarrierPawn: SwitchResourceType: CurrentResourceType = %d"), CurrentResourceType);
     while (!(*WarehousePtr).Contains(CurrentResourceType))
     {
-        // Если складов нет, продолжаем переключать типы ресурсов
+        // Р•СЃР»Рё СЃРєР»Р°РґРѕРІ РЅРµС‚, РїСЂРѕРґРѕР»Р¶Р°РµРј РїРµСЂРµРєР»СЋС‡Р°С‚СЊ С‚РёРїС‹ СЂРµСЃСѓСЂСЃРѕРІ
         CurrentResourceType = (CurrentResourceType + 1) % ((*WarehousePtr).Num() + 1);
     }
 

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+п»ї// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "Warehouse.h"
@@ -8,22 +8,22 @@
 // Sets default values
 AWarehouse::AWarehouse()
 {
-	// Инициализация StaticMesh компонента
+	// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ StaticMesh РєРѕРјРїРѕРЅРµРЅС‚Р°
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
 	RootComponent = StaticMesh;
 
-	// Привязываем конкретный меш к StaticMeshComponent
+	// РџСЂРёРІСЏР·С‹РІР°РµРј РєРѕРЅРєСЂРµС‚РЅС‹Р№ РјРµС€ Рє StaticMeshComponent
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("/Engine/BasicShapes/Cube.Cube"));
 	if (MeshAsset.Succeeded())
 	{
 		StaticMesh->SetStaticMesh(MeshAsset.Object);
 	}
 
-	// Устанавливаем случайное количество ресурсов (от 0 до 100)
+	// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј СЃР»СѓС‡Р°Р№РЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЂРµСЃСѓСЂСЃРѕРІ (РѕС‚ 0 РґРѕ 100)
 	ResourceAmount = FMath::RandRange(0, 100);
-	// Устанавливаем случайный тип ресурса (например, от 1 до 4 для 4 типов ресурсов)
+	// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј СЃР»СѓС‡Р°Р№РЅС‹Р№ С‚РёРї СЂРµСЃСѓСЂСЃР° (РЅР°РїСЂРёРјРµСЂ, РѕС‚ 1 РґРѕ 4 РґР»СЏ 4 С‚РёРїРѕРІ СЂРµСЃСѓСЂСЃРѕРІ)
 	ResourceType = FMath::RandRange(1, 4);
-	// По умолчанию установим вместимость на 100 (можно рандомизировать)
+	// РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ СѓСЃС‚Р°РЅРѕРІРёРј РІРјРµСЃС‚РёРјРѕСЃС‚СЊ РЅР° 100 (РјРѕР¶РЅРѕ СЂР°РЅРґРѕРјРёР·РёСЂРѕРІР°С‚СЊ)
 	StorageLimit = 100;  
 
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -46,28 +46,28 @@ void AWarehouse::Tick(float DeltaTime)
 
 }
 
-// Метод для добавления ресурса
+// РњРµС‚РѕРґ РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ СЂРµСЃСѓСЂСЃР°
 bool AWarehouse::AddResource(int32 Amount)
 {
 	if (ResourceAmount + Amount <= StorageLimit)
 	{
 		ResourceAmount += Amount;
-		UE_LOG(LogTemp, Log, TEXT("Resources added, new amount: %d"), ResourceAmount); // Логирование для проверки
-		return true;  // Успешно добавлено
+		UE_LOG(LogTemp, Log, TEXT("Resources added, new amount: %d"), ResourceAmount); // Р›РѕРіРёСЂРѕРІР°РЅРёРµ РґР»СЏ РїСЂРѕРІРµСЂРєРё
+		return true;  // РЈСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅРѕ
 	}
-	UE_LOG(LogTemp, Warning, TEXT("Too many resources to add")); // Логирование превышение лимита
-	return false;  // Превышен лимит
+	UE_LOG(LogTemp, Warning, TEXT("Too many resources to add")); // Р›РѕРіРёСЂРѕРІР°РЅРёРµ РїСЂРµРІС‹С€РµРЅРёРµ Р»РёРјРёС‚Р°
+	return false;  // РџСЂРµРІС‹С€РµРЅ Р»РёРјРёС‚
 }
 
-// Метод для извлечения ресурса
+// РњРµС‚РѕРґ РґР»СЏ РёР·РІР»РµС‡РµРЅРёСЏ СЂРµСЃСѓСЂСЃР°
 bool AWarehouse::RemoveResource(int32 Amount)
 {
 	if (ResourceAmount >= Amount)
 	{
 		ResourceAmount -= Amount;
-		UE_LOG(LogTemp, Log, TEXT("Resources removed, new amount: %d"), ResourceAmount); // Логирование для проверки
-		return true;  // Успешно извлечено
+		UE_LOG(LogTemp, Log, TEXT("Resources removed, new amount: %d"), ResourceAmount); // Р›РѕРіРёСЂРѕРІР°РЅРёРµ РґР»СЏ РїСЂРѕРІРµСЂРєРё
+		return true;  // РЈСЃРїРµС€РЅРѕ РёР·РІР»РµС‡РµРЅРѕ
 	}
-	UE_LOG(LogTemp, Warning, TEXT("Not enough resource to remove")); // Логирование недостатка ресурса
-	return false;  // Недостаточно ресурса
+	UE_LOG(LogTemp, Warning, TEXT("Not enough resource to remove")); // Р›РѕРіРёСЂРѕРІР°РЅРёРµ РЅРµРґРѕСЃС‚Р°С‚РєР° СЂРµСЃСѓСЂСЃР°
+	return false;  // РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЂРµСЃСѓСЂСЃР°
 }

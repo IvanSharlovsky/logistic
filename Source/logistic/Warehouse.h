@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+п»ї// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -12,14 +12,14 @@ class LOGISTIC_API AWarehouse : public AActor
 	GENERATED_BODY()
 	
 public:	
-    // Конструктор по умолчанию
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 	AWarehouse();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-    // Компонент для отображения меша склада
+    // РљРѕРјРїРѕРЅРµРЅС‚ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РјРµС€Р° СЃРєР»Р°РґР°
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
     UStaticMeshComponent* StaticMesh;
 
@@ -27,23 +27,23 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-    // Тип ресурса, который хранит склад (от 0 до 49 для 50 типов ресурсов)
+    // РўРёРї СЂРµСЃСѓСЂСЃР°, РєРѕС‚РѕСЂС‹Р№ С…СЂР°РЅРёС‚ СЃРєР»Р°Рґ (РѕС‚ 0 РґРѕ 49 РґР»СЏ 50 С‚РёРїРѕРІ СЂРµСЃСѓСЂСЃРѕРІ)
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Warehouse")
     int32 ResourceType;
 
-    // Количество ресурса на складе
+    // РљРѕР»РёС‡РµСЃС‚РІРѕ СЂРµСЃСѓСЂСЃР° РЅР° СЃРєР»Р°РґРµ
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Warehouse")
     int32 ResourceAmount;
 
-    // Максимальная вместимость ресурса на складе
+    // РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ РІРјРµСЃС‚РёРјРѕСЃС‚СЊ СЂРµСЃСѓСЂСЃР° РЅР° СЃРєР»Р°РґРµ
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Warehouse")
     int32 StorageLimit;
 
-    // Метод для добавления ресурса
+    // РњРµС‚РѕРґ РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ СЂРµСЃСѓСЂСЃР°
     UFUNCTION(BlueprintCallable, Category = "Warehouse")
     bool AddResource(int32 Amount);
 
-    // Метод для извлечения ресурса
+    // РњРµС‚РѕРґ РґР»СЏ РёР·РІР»РµС‡РµРЅРёСЏ СЂРµСЃСѓСЂСЃР°
     UFUNCTION(BlueprintCallable, Category = "Warehouse")
     bool RemoveResource(int32 Amount);
 };

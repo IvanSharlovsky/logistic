@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+п»ї// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -14,55 +14,55 @@ class LOGISTIC_API AResourceCarrierPawn : public APawn
     GENERATED_BODY()
 
 public:
-    // Конструктор
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
     AResourceCarrierPawn();
 
-    // Переопределение BeginPlay
+    // РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ BeginPlay
     virtual void BeginPlay() override;
 
-    // Переопределение Tick для обновления каждый кадр
+    // РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ Tick РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ РєР°Р¶РґС‹Р№ РєР°РґСЂ
     virtual void Tick(float DeltaTime) override;
 
-    // Функция для задания списка складов
+    // Р¤СѓРЅРєС†РёСЏ РґР»СЏ Р·Р°РґР°РЅРёСЏ СЃРїРёСЃРєР° СЃРєР»Р°РґРѕРІ
     void SetWarehouses(TMap<int32, TArray<AWarehouse*>>* WarehouseList);
 
-    //// Добавление нового склада в список
+    //// Р”РѕР±Р°РІР»РµРЅРёРµ РЅРѕРІРѕРіРѕ СЃРєР»Р°РґР° РІ СЃРїРёСЃРѕРє
     //void AddWarehouse(AWarehouse* Warehouse);
 
-    // Скорость перемещения
+    // РЎРєРѕСЂРѕСЃС‚СЊ РїРµСЂРµРјРµС‰РµРЅРёСЏ
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
     float MovementSpeed;
 
 protected:
-    // Компонент для визуализации Pawn
+    // РљРѕРјРїРѕРЅРµРЅС‚ РґР»СЏ РІРёР·СѓР°Р»РёР·Р°С†РёРё Pawn
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
     UStaticMeshComponent* StaticMesh;
 
-    // Текущий тип ресурса, с которым работает грузчик
+    // РўРµРєСѓС‰РёР№ С‚РёРї СЂРµСЃСѓСЂСЃР°, СЃ РєРѕС‚РѕСЂС‹Рј СЂР°Р±РѕС‚Р°РµС‚ РіСЂСѓР·С‡РёРє
     int32 CurrentResourceType;
 
-    // Индекс текущего склада
+    // РРЅРґРµРєСЃ С‚РµРєСѓС‰РµРіРѕ СЃРєР»Р°РґР°
     int32 CurrentWarehouseIndex;
 
-    // Списки складов по типам ресурсов (указатель на карту из GameMode)
+    // РЎРїРёСЃРєРё СЃРєР»Р°РґРѕРІ РїРѕ С‚РёРїР°Рј СЂРµСЃСѓСЂСЃРѕРІ (СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РєР°СЂС‚Сѓ РёР· GameMode)
     TMap<int32, TArray<AWarehouse*>>* WarehousePtr;
 
-    // Флаг для обозначения, идет ли перемещение
+    // Р¤Р»Р°Рі РґР»СЏ РѕР±РѕР·РЅР°С‡РµРЅРёСЏ, РёРґРµС‚ Р»Рё РїРµСЂРµРјРµС‰РµРЅРёРµ
     bool bIsMoving;
 
-    // Таймер для задержки между перемещениями
+    // РўР°Р№РјРµСЂ РґР»СЏ Р·Р°РґРµСЂР¶РєРё РјРµР¶РґСѓ РїРµСЂРµРјРµС‰РµРЅРёСЏРјРё
     FTimerHandle TimerHandle_WaitAtWarehouse;
 
-    // Функция перемещения к следующему складу
+    // Р¤СѓРЅРєС†РёСЏ РїРµСЂРµРјРµС‰РµРЅРёСЏ Рє СЃР»РµРґСѓСЋС‰РµРјСѓ СЃРєР»Р°РґСѓ
     void MoveToNextWarehouse();
 
-    // Функция для перемещения грузчика
+    // Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїРµСЂРµРјРµС‰РµРЅРёСЏ РіСЂСѓР·С‡РёРєР°
     void MoveToWarehouse(float DeltaTime);
 
-    // Функция для задержки на складе
+    // Р¤СѓРЅРєС†РёСЏ РґР»СЏ Р·Р°РґРµСЂР¶РєРё РЅР° СЃРєР»Р°РґРµ
     void WaitAtWarehouse();
 
-    // Функция для нового обхода складов
+    // Р¤СѓРЅРєС†РёСЏ РґР»СЏ РЅРѕРІРѕРіРѕ РѕР±С…РѕРґР° СЃРєР»Р°РґРѕРІ
     void SwitchResourceType();
 };
 
