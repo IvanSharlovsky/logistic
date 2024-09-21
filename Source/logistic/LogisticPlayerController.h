@@ -45,3 +45,4 @@ private:
 
     FVector2D MovementInput;   // Store the input for movement
 };
+

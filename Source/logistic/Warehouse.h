@@ -47,3 +47,4 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Warehouse")
     bool RemoveResource(int32 Amount);
 };
+

@@ -65,3 +65,4 @@ protected:
     // Функция для нового обхода складов
     void SwitchResourceType();
 };
+

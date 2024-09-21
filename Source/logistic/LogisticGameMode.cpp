@@ -89,3 +89,4 @@ void ALogisticGameMode::AddWarehouseToArray(AWarehouse* NewWarehouse)
     // Добавляем новый склад в соответствующий список
     Warehouses[ResourceType].Add(NewWarehouse);
 }
+
