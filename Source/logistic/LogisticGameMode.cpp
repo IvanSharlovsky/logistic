@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+п»ї// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "LogisticGameMode.h"
@@ -17,7 +17,7 @@ void ALogisticGameMode::BeginPlay()
 {
     Super::BeginPlay();
 
-    // Проверяем WarehouseClass
+    // РџСЂРѕРІРµСЂСЏРµРј WarehouseClass
     if (WarehouseClass)
     {
         UE_LOG(LogTemp, Log, TEXT("WarehouseClass is set to: %s"), *WarehouseClass->GetName());
@@ -27,10 +27,10 @@ void ALogisticGameMode::BeginPlay()
         UE_LOG(LogTemp, Error, TEXT("WarehouseClass is not set in GameMode!"));
     }
 
-    // Найдем объект грузчика на сцене
+    // РќР°Р№РґРµРј РѕР±СЉРµРєС‚ РіСЂСѓР·С‡РёРєР° РЅР° СЃС†РµРЅРµ
     CarrierPawn = Cast<AResourceCarrierPawn>(UGameplayStatics::GetActorOfClass(GetWorld(), AResourceCarrierPawn::StaticClass()));
 
-    // Спауним несколько складов для теста
+    // РЎРїР°СѓРЅРёРј РЅРµСЃРєРѕР»СЊРєРѕ СЃРєР»Р°РґРѕРІ РґР»СЏ С‚РµСЃС‚Р°
     for (int32 i = 0; i < 8; ++i)
     {
         SpawnWarehouse();
@@ -38,7 +38,7 @@ void ALogisticGameMode::BeginPlay()
 
     UE_LOG(LogTemp, Log, TEXT("Warehouses.Num = %d"), Warehouses.Num());
 
-    // Привязываем действие спауна склада к клавише
+    // РџСЂРёРІСЏР·С‹РІР°РµРј РґРµР№СЃС‚РІРёРµ СЃРїР°СѓРЅР° СЃРєР»Р°РґР° Рє РєР»Р°РІРёС€Рµ
     if (APlayerController* PlayerController = GetWorld()->GetFirstPlayerController())
     {
         InputComponent = NewObject<UInputComponent>(this);
@@ -61,7 +61,7 @@ void ALogisticGameMode::SpawnWarehouse()
 
     if (WarehouseClass)
     {
-        // Спауним склад на случайной позиции
+        // РЎРїР°СѓРЅРёРј СЃРєР»Р°Рґ РЅР° СЃР»СѓС‡Р°Р№РЅРѕР№ РїРѕР·РёС†РёРё
         FVector SpawnLocation = FVector(FMath::RandRange(-3000.0f, 3000.0f), FMath::RandRange(-3000.0f, 3000.0f), 50.0f);
         FRotator SpawnRotation = FRotator::ZeroRotator;
 
@@ -69,7 +69,7 @@ void ALogisticGameMode::SpawnWarehouse()
 
         if (NewWarehouse && CarrierPawn)
         {
-            // Добавляем новый склад в список складов грузчика
+            // Р”РѕР±Р°РІР»СЏРµРј РЅРѕРІС‹Р№ СЃРєР»Р°Рґ РІ СЃРїРёСЃРѕРє СЃРєР»Р°РґРѕРІ РіСЂСѓР·С‡РёРєР°
             AddWarehouseToArray(NewWarehouse);
             UE_LOG(LogTemp, Log, TEXT("Tick: Warehouse %d for resource type: %d"), Warehouses[NewWarehouse->ResourceType].Find(NewWarehouse), NewWarehouse->ResourceType);
         }
@@ -80,12 +80,12 @@ void ALogisticGameMode::AddWarehouseToArray(AWarehouse* NewWarehouse)
 {
     int32 ResourceType = NewWarehouse->ResourceType;
 
-    // Проверяем, есть ли список для этого типа ресурса
+    // РџСЂРѕРІРµСЂСЏРµРј, РµСЃС‚СЊ Р»Рё СЃРїРёСЃРѕРє РґР»СЏ СЌС‚РѕРіРѕ С‚РёРїР° СЂРµСЃСѓСЂСЃР°
     if (!Warehouses.Contains(ResourceType))
     {
         Warehouses.Add(ResourceType, TArray<AWarehouse*>());
     }
 
-    // Добавляем новый склад в соответствующий список
+    // Р”РѕР±Р°РІР»СЏРµРј РЅРѕРІС‹Р№ СЃРєР»Р°Рґ РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёР№ СЃРїРёСЃРѕРє
     Warehouses[ResourceType].Add(NewWarehouse);
 }
