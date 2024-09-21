@@ -3,6 +3,7 @@
 #pragma once
 
 #include "Warehouse.h"
+#include "LogisticPlayerController.h"
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
 #include "LogisticGameMode.generated.h"
@@ -13,6 +14,9 @@ class LOGISTIC_API ALogisticGameMode : public AGameModeBase
     GENERATED_BODY()
 
 public:
+    // Конструктор
+    ALogisticGameMode();
+
     virtual void BeginPlay() override;
 
     // Функция для спауна склада

@@ -2,6 +2,12 @@ D:\Documents\Unreal Projects\logistic\Intermediate\Build\Win64\UE4Editor\Develop
 D:\Documents\Unreal Projects\logistic\Source\logistic\LogisticGameMode.h
 D:\Documents\Unreal Projects\logistic\Source\logistic\Warehouse.h
 D:\Documents\Unreal Projects\logistic\Intermediate\Build\Win64\UE4Editor\Inc\logistic\Warehouse.generated.h
+D:\Documents\Unreal Projects\logistic\Source\logistic\LogisticPlayerController.h
+D:\Apps\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/SpringArmComponent.h
+D:\Apps\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\SpringArmComponent.generated.h
+D:\Apps\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\Camera/CameraComponent.h
+D:\Apps\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\CameraComponent.generated.h
+D:\Documents\Unreal Projects\logistic\Intermediate\Build\Win64\UE4Editor\Inc\logistic\LogisticPlayerController.generated.h
 D:\Apps\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\GameFramework/GameModeBase.h
 D:\Apps\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\Engine/ServerStatReplicator.h
 D:\Apps\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ServerStatReplicator.generated.h

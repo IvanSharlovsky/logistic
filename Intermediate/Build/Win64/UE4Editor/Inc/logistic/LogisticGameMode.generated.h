@@ -13,18 +13,18 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define LOGISTIC_LogisticGameMode_generated_h
 
-#define logistic_Source_logistic_LogisticGameMode_h_13_SPARSE_DATA
-#define logistic_Source_logistic_LogisticGameMode_h_13_RPC_WRAPPERS \
+#define logistic_Source_logistic_LogisticGameMode_h_14_SPARSE_DATA
+#define logistic_Source_logistic_LogisticGameMode_h_14_RPC_WRAPPERS \
  \
 	DECLARE_FUNCTION(execSpawnWarehouse);
 
 
-#define logistic_Source_logistic_LogisticGameMode_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
+#define logistic_Source_logistic_LogisticGameMode_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execSpawnWarehouse);
 
 
-#define logistic_Source_logistic_LogisticGameMode_h_13_INCLASS_NO_PURE_DECLS \
+#define logistic_Source_logistic_LogisticGameMode_h_14_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesALogisticGameMode(); \
 	friend struct Z_Construct_UClass_ALogisticGameMode_Statics; \
@@ -33,7 +33,7 @@ public: \
 	DECLARE_SERIALIZER(ALogisticGameMode)
 
 
-#define logistic_Source_logistic_LogisticGameMode_h_13_INCLASS \
+#define logistic_Source_logistic_LogisticGameMode_h_14_INCLASS \
 private: \
 	static void StaticRegisterNativesALogisticGameMode(); \
 	friend struct Z_Construct_UClass_ALogisticGameMode_Statics; \
@@ -42,9 +42,9 @@ public: \
 	DECLARE_SERIALIZER(ALogisticGameMode)
 
 
-#define logistic_Source_logistic_LogisticGameMode_h_13_STANDARD_CONSTRUCTORS \
+#define logistic_Source_logistic_LogisticGameMode_h_14_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API ALogisticGameMode(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+	NO_API ALogisticGameMode(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ALogisticGameMode) \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, ALogisticGameMode); \
 	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ALogisticGameMode); \
@@ -55,9 +55,7 @@ private: \
 public:
 
 
-#define logistic_Source_logistic_LogisticGameMode_h_13_ENHANCED_CONSTRUCTORS \
-	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API ALogisticGameMode(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()) : Super(ObjectInitializer) { }; \
+#define logistic_Source_logistic_LogisticGameMode_h_14_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API ALogisticGameMode(ALogisticGameMode&&); \
@@ -65,35 +63,35 @@ private: \
 public: \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, ALogisticGameMode); \
 	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(ALogisticGameMode); \
-	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(ALogisticGameMode)
+	DEFINE_DEFAULT_CONSTRUCTOR_CALL(ALogisticGameMode)
 
 
-#define logistic_Source_logistic_LogisticGameMode_h_13_PRIVATE_PROPERTY_OFFSET \
+#define logistic_Source_logistic_LogisticGameMode_h_14_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__WarehouseClass() { return STRUCT_OFFSET(ALogisticGameMode, WarehouseClass); } \
 	FORCEINLINE static uint32 __PPO__CarrierPawn() { return STRUCT_OFFSET(ALogisticGameMode, CarrierPawn); }
 
 
-#define logistic_Source_logistic_LogisticGameMode_h_10_PROLOG
-#define logistic_Source_logistic_LogisticGameMode_h_13_GENERATED_BODY_LEGACY \
+#define logistic_Source_logistic_LogisticGameMode_h_11_PROLOG
+#define logistic_Source_logistic_LogisticGameMode_h_14_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	logistic_Source_logistic_LogisticGameMode_h_13_PRIVATE_PROPERTY_OFFSET \
-	logistic_Source_logistic_LogisticGameMode_h_13_SPARSE_DATA \
-	logistic_Source_logistic_LogisticGameMode_h_13_RPC_WRAPPERS \
-	logistic_Source_logistic_LogisticGameMode_h_13_INCLASS \
-	logistic_Source_logistic_LogisticGameMode_h_13_STANDARD_CONSTRUCTORS \
+	logistic_Source_logistic_LogisticGameMode_h_14_PRIVATE_PROPERTY_OFFSET \
+	logistic_Source_logistic_LogisticGameMode_h_14_SPARSE_DATA \
+	logistic_Source_logistic_LogisticGameMode_h_14_RPC_WRAPPERS \
+	logistic_Source_logistic_LogisticGameMode_h_14_INCLASS \
+	logistic_Source_logistic_LogisticGameMode_h_14_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define logistic_Source_logistic_LogisticGameMode_h_13_GENERATED_BODY \
+#define logistic_Source_logistic_LogisticGameMode_h_14_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	logistic_Source_logistic_LogisticGameMode_h_13_PRIVATE_PROPERTY_OFFSET \
-	logistic_Source_logistic_LogisticGameMode_h_13_SPARSE_DATA \
-	logistic_Source_logistic_LogisticGameMode_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
-	logistic_Source_logistic_LogisticGameMode_h_13_INCLASS_NO_PURE_DECLS \
-	logistic_Source_logistic_LogisticGameMode_h_13_ENHANCED_CONSTRUCTORS \
+	logistic_Source_logistic_LogisticGameMode_h_14_PRIVATE_PROPERTY_OFFSET \
+	logistic_Source_logistic_LogisticGameMode_h_14_SPARSE_DATA \
+	logistic_Source_logistic_LogisticGameMode_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+	logistic_Source_logistic_LogisticGameMode_h_14_INCLASS_NO_PURE_DECLS \
+	logistic_Source_logistic_LogisticGameMode_h_14_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

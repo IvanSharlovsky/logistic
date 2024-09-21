@@ -7,6 +7,12 @@
 #include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"
 
+ALogisticGameMode::ALogisticGameMode()
+{
+    // Set the PlayerController class to use your custom LogisticPlayerController
+    PlayerControllerClass = ALogisticPlayerController::StaticClass();
+}
+
 void ALogisticGameMode::BeginPlay()
 {
     Super::BeginPlay();
